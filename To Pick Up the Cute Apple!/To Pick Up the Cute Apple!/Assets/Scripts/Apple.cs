@@ -10,17 +10,25 @@ public class Apple : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 1f;
+        speed = 300f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        move();
+        reachBottom();
     }
 
     private void move()
     {
-        transform = new Vector2(transform.position.x, transform.position.y + speed*-1);
+        transform.position = new Vector2(transform.position.x, transform.position.y + speed*-1*Time.deltaTime);
+    }
+
+    private void reachBottom()
+    {
+        if(transform.position.y <= 50){
+            Destroy(gameObject);
+        }
     }
 }

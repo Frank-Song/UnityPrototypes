@@ -5,13 +5,14 @@ using UnityEngine;
 public class TreeAI : MonoBehaviour
 {
 
+    public GameObject apple;
     public float speed;
     public int direction;
 
     // Start is called before the first frame update
     void Start()
     {
-        speed = 1f;
+        speed = 150f;
         direction = 1;
         transform.position = new Vector2(500,520);
     }
@@ -19,8 +20,14 @@ public class TreeAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        dropApple();
         checkDirection();
-        transform.position = new Vector2(transform.position.x + speed*direction, transform.position.y);
+        move();
+    }
+
+    private void move()
+    {
+        transform.position = new Vector2(transform.position.x + speed*direction*Time.deltaTime, transform.position.y);
     }
 
     private void checkDirection()
@@ -32,6 +39,9 @@ public class TreeAI : MonoBehaviour
 
     private void dropApple()
     {
-        //先睡觉吧
+        float num = Random.Range(0f,5000f);
+        if(num <= 10){
+            GameObject instance = (GameObject)Instantiate(apple, transform.position, transform.rotation);
+        }
     }
 }

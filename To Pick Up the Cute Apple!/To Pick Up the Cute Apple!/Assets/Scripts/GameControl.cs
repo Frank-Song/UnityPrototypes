@@ -28,4 +28,13 @@ public class GameControl : MonoBehaviour
             transform.position = new Vector2(Input.mousePosition.x, transform.position.y);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        score += 100;
+        if(collision.gameObject.tag == "collection"){
+            score += 100;
+            Destroy(collision.gameObject);
+        }
+    }
 }
